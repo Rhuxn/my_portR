@@ -23,9 +23,9 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Cria os arquivos para Deploy
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: .
+        run: |
+          mkdir output
+          cp -r * output/  # Copia os arquivos necessários para a pasta "output"
 
-      - name: Publica no GitPages
+      - name: Publica no GitHub Pages
         uses: actions/deploy-pages@v1
