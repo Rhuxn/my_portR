@@ -5,6 +5,12 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write
+  contents: read
+  pages: write
+  pull-requests: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -17,7 +23,7 @@ jobs:
         uses: actions/configure-pages@v3
 
       - name: Cria os arquivos para Deploy
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v2
         with:
           path: .
 
