@@ -25,7 +25,9 @@ jobs:
       - name: Cria os arquivos para Deploy
         run: |
           mkdir output
-          cp -r * output/  # Copia os arquivos necessários para a pasta "output"
+          # Copia os arquivos e pastas, mas ignora a pasta 'output'
+          shopt -s extglob
+          cp -r !(output) output/
 
       - name: Publica no GitHub Pages
         uses: actions/deploy-pages@v1
