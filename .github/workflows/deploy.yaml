@@ -1,4 +1,4 @@
-name: Deploy para paginas do GitHub
+name: Deploy para GitHub Pages
 
 on:
   push:
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checa o repositorio
+      - name: Checa o repositório
         uses: actions/checkout@v3
 
       - name: Configura GitHub Pages
@@ -24,10 +24,13 @@ jobs:
 
       - name: Cria os arquivos para Deploy
         run: |
-          mkdir output
-          # Copia os arquivos e pastas, mas ignora a pasta 'output'
-          shopt -s extglob
-          cp -r !(output) output/
+          mkdir -p output
+          rsync -av --progress ./ output --exclude output
+
+      - name: Upload dos arquivos para deploy
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: output
 
       - name: Publica no GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
