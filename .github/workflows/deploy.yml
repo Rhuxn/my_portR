@@ -1,4 +1,4 @@
-name: Teste Deploy GitHub Pages
+name: Deploy para GitHub Pages
 
 on:
   push:
@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checa o repositório
@@ -20,6 +20,16 @@ jobs:
 
       - name: Configura GitHub Pages
         uses: actions/configure-pages@v3
+
+      - name: Cria os arquivos para Deploy
+        run: |
+          mkdir -p output
+          rsync -av --progress ./ output --exclude output
+
+      - name: Upload dos arquivos para deploy
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: output
 
       - name: Publica no GitHub Pages
         uses: actions/deploy-pages@v2
