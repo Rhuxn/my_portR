@@ -1,4 +1,4 @@
-name: Teste Deploy GitHub Pages
+name: Deploy para GitHub Pages
 
 on:
   push:
@@ -6,9 +6,7 @@ on:
       - main
 
 permissions:
-  id-token: write
-  contents: read
-  pages: write
+  contents: write
 
 jobs:
   deploy:
@@ -18,8 +16,22 @@ jobs:
       - name: Checa o repositório
         uses: actions/checkout@v3
 
-      - name: Configura GitHub Pages
-        uses: actions/configure-pages@v3
+      - name: Instala dependências
+        run: npm install  # Se for um projeto Node.js. Remova se não precisar.
 
-      - name: Publica no GitHub Pages
-        uses: actions/deploy-pages@v2
+      - name: Cria os arquivos para Deploy
+        run: |
+          mkdir -p output
+          rsync -av --progress ./ output --exclude output
+
+      - name: Faz upload dos arquivos para deploy
+        uses: actions/upload-artifact@v3
+        with:
+          name: output
+          path: output
+
+      - name: Faz deploy no branch gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: output
