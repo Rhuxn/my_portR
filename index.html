@@ -12,7 +12,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>:)</h1>
+            <h1>Rhuan</h1>
             <p>Estudante de Análise e Desenvolvimento de Sistemas</p>
             <nav>
                 <ul>
@@ -29,7 +29,8 @@
 
             <div class="sobre-texto">
                 <h2>Sobre Mim</h2>
-                <p>Olá, meu nome é <strong>Rhuan</strong> e sou estudante de Análise e Desenvolvimento de Sistemas.</p>
+                <p>Olá, meu nome é <strong>Rhuan</strong> e sou estudante de Análise e Desenvolvimento de Sistemas. Estou começando minha jornada na área de tecnologia e programação, sempre buscando aprender e melhorar minhas
+                habilidades.</p>
             </div>
         </div>
     </section>
@@ -56,7 +57,6 @@
             <p>Você pode me encontrar nas seguintes redes sociais:</p>
             <ul>
                 <li><a href="https://github.com/Rhuxn" target="_blank">GitHub</a></li>
-                <li><a href="mailto:rhuangoliveirasantos@gmail.com">E-mail</a></li>
             </ul>
         </div>
     </section>
@@ -78,6 +78,17 @@
                 }
             });
         });
+        window.onscroll = function () { addSticky() };
+            var header = document.querySelector("header");
+            var sticky = header.offsetTop;
+
+            function addSticky() {
+                if (window.pageYOffset > sticky) {
+                    header.classList.add("sticky");
+                } else {
+                    header.classList.remove("sticky");
+                }
+            }
     </script>
 </body>
 
