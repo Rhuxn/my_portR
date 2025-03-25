@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Rhuan, estudante de Análise e Desenvolvimento de Sistemas.">
+    <title>Portfólio - Rhuan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Rhuan</h1>
+            <p>Estudante de Análise e Desenvolvimento de Sistemas</p>
+            <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="sobre" class="section visible">
+        <div class="container sobre-conteudo">
+            <div class="sobre-texto">
+                <h2>Sobre Mim</h2>
+                <p>Olá, meu nome é <strong>Rhuan</strong> e sou estudante de Análise e Desenvolvimento de Sistemas. Estou começando minha jornada na área de tecnologia e programação, sempre buscando aprender e melhorar minhas habilidades.  Meu objetivo é me tornar um desenvolvedor full-stack, dominando tanto o front-end quanto o back-end.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos" class="section">
+        <div class="container">
+            <h2>Meus Projetos</h2>
+            <div class="project-list">
+                <div class="project">
+                    <h3><a href="https://link-do-projeto.com" target="_blank">Projeto 1</a></h3>
+                    <p>Descrição breve do projeto.</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://link-do-projeto.com" target="_blank">Projeto 2</a></h3>
+                    <p>Descrição breve do projeto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="section">
+        <div class="container">
+            <h2>Contato</h2>
+            <p>Você pode me encontrar nas seguintes redes sociais:</p>
+            <ul>
+                <li><a href="https://github.com/Rhuxn" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Responsivo
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+
+        // Animação de Rolagem Suave
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Animação de Aparecimento ao Rolagem
+        document.addEventListener('scroll', function () {
+            document.querySelectorAll('.section').forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
