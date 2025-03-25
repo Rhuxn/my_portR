@@ -14,6 +14,7 @@
         <div class="container">
             <h1>Rhuan</h1>
             <p>Estudante de Análise e Desenvolvimento de Sistemas</p>
+            <button class="menu-toggle" aria-label="Abrir menu">☰</button>
             <nav>
                 <ul>
                     <li><a href="#sobre">Sobre</a></li>
@@ -24,13 +25,11 @@
         </div>
     </header>
 
-    <section id="sobre" class="section">
+    <section id="sobre" class="section visible">
         <div class="container sobre-conteudo">
-
             <div class="sobre-texto">
                 <h2>Sobre Mim</h2>
-                <p>Olá, meu nome é <strong>Rhuan</strong> e sou estudante de Análise e Desenvolvimento de Sistemas. Estou começando minha jornada na área de tecnologia e programação, sempre buscando aprender e melhorar minhas
-                habilidades.</p>
+                <p>Olá, meu nome é <strong>Rhuan</strong> e sou estudante de Análise e Desenvolvimento de Sistemas. Estou começando minha jornada na área de tecnologia e programação, sempre buscando aprender e melhorar minhas habilidades.  Meu objetivo é me tornar um desenvolvedor full-stack, dominando tanto o front-end quanto o back-end.</p>
             </div>
         </div>
     </section>
@@ -41,11 +40,11 @@
             <div class="project-list">
                 <div class="project">
                     <h3><a href="https://link-do-projeto.com" target="_blank">Projeto 1</a></h3>
-                    <p>...</p>
+                    <p>Descrição breve do projeto.</p>
                 </div>
                 <div class="project">
                     <h3><a href="https://link-do-projeto.com" target="_blank">Projeto 2</a></h3>
-                    <p>...</p>
+                    <p>Descrição breve do projeto.</p>
                 </div>
             </div>
         </div>
@@ -67,28 +66,30 @@
         </div>
     </footer>
 
-    <!-- JavaScript para animação de rolagem -->
     <script>
+        // Menu Responsivo
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+
+        // Animação de Rolagem Suave
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Animação de Aparecimento ao Rolagem
         document.addEventListener('scroll', function () {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(function (section) {
+            document.querySelectorAll('.section').forEach(section => {
                 const rect = section.getBoundingClientRect();
                 if (rect.top < window.innerHeight && rect.bottom >= 0) {
                     section.classList.add('visible');
                 }
             });
         });
-        window.onscroll = function () { addSticky() };
-            var header = document.querySelector("header");
-            var sticky = header.offsetTop;
-
-            function addSticky() {
-                if (window.pageYOffset > sticky) {
-                    header.classList.add("sticky");
-                } else {
-                    header.classList.remove("sticky");
-                }
-            }
     </script>
 </body>
 
