@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfólio de Rhuan, estudante de Análise e Desenvolvimento de Sistemas.">
+    <title>Portfólio - Rhuan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Rhuan</h1>
+            <p>Estudante de Análise e Desenvolvimento de Sistemas</p>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#projetos">Projetos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+            <!-- Botão de alternância de idioma -->
+            <button class="translate-toggle" id="languageToggle">English</button>
+            <!-- Botão Dark Mode -->
+            <button class="dark-mode-toggle" id="darkModeToggle">Modo Escuro</button>
+            <!-- Menu Responsivo -->
+            <button class="menu-toggle" id="menuToggle">☰</button>
+        </div>
+    </header>
+
+    <section id="sobre" class="section">
+        <div class="container sobre-conteudo">
+            <div class="sobre-texto">
+                <h2 id="about-title">Sobre Mim</h2>
+                <p id="about-text">
+                    Olá, meu nome é <strong>Rhuan</strong>, tenho 18 anos e sou estudante de Análise e Desenvolvimento de Sistemas. Sou apaixonado por tecnologia e programação e estou no início da minha jornada para me tornar um desenvolvedor full-stack. Meu objetivo é dominar tanto o front-end quanto o back-end, criando aplicações eficientes e intuitivas. Sempre busco aprender novas tecnologias, aprimorar minhas habilidades e enfrentar desafios que me ajudem a crescer profissionalmente. 
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos" class="section">
+        <div class="container">
+            <h2 id="projects-title">Meus Projetos</h2>
+            <div class="project-list">
+                <div class="project">
+                    <h3><a href="https://link-do-projeto.com" target="_blank">Projeto 1</a></h3>
+                    <p>...</p>
+                </div>
+                <div class="project">
+                    <h3><a href="https://link-do-projeto.com" target="_blank">Projeto 2</a></h3>
+                    <p>...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="section">
+        <div class="social-links">
+            <h2 id="contact-title">Contato</h2>
+            <p id="contact-text">Você pode me encontrar nas seguintes redes sociais:</p>
+            <ul>
+                <li><a href="https://github.com/Rhuxn" target="_blank">GitHub</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('scroll', function () {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(function (section) {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom >= 0) {
+                    section.classList.add('visible');
+                }
+            });
+        });
+
+        // Dark Mode Toggle
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        // Menu Responsivo
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.querySelector('nav ul');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('show');
+        });
+
+        window.onscroll = function () { addSticky() };
+        var header = document.querySelector("header");
+        var sticky = header.offsetTop;
+
+        function addSticky() {
+            if (window.pageYOffset > sticky) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        }
+
+        // Alternância de idioma
+        const languageToggle = document.getElementById("languageToggle");
+        const translations = {
+            "pt": {
+                "about-title": "Sobre Mim",
+                "about-text": "Olá, meu nome é <strong>Rhuan</strong>, tenho 18 anos e sou estudante de Análise e Desenvolvimento de Sistemas. Sou apaixonado por tecnologia e programação e estou no início da minha jornada para me tornar um desenvolvedor full-stack. Meu objetivo é dominar tanto o front-end quanto o back-end, criando aplicações eficientes e intuitivas. Sempre busco aprender novas tecnologias, aprimorar minhas habilidades e enfrentar desafios que me ajudem a crescer profissionalmente.",
+                "projects-title": "Meus Projetos",
+                "contact-title": "Contato",
+                "contact-text": "Você pode me encontrar nas seguintes redes sociais:",
+                "button-text": "English"
+            },
+            "en": {
+                "about-title": "About Me",
+                "about-text": "Hello, my name is <strong>Rhuan</strong>, I am 18 years old and a student of Systems Analysis and Development. I am passionate about technology and programming and I am at the beginning of my journey to become a full-stack developer. My goal is to master both front-end and back-end, creating efficient and intuitive applications. I always seek to learn new technologies, improve my skills, and face challenges that help me grow professionally.",
+                "projects-title": "My Projects",
+                "contact-title": "Contact",
+                "contact-text": "You can find me on the following social networks:",
+                "button-text": "Português"
+            }
+        };
+
+        let currentLang = "pt";
+
+        languageToggle.addEventListener("click", () => {
+            currentLang = currentLang === "pt" ? "en" : "pt";
+            document.getElementById("about-title").innerHTML = translations[currentLang]["about-title"];
+            document.getElementById("about-text").innerHTML = translations[currentLang]["about-text"];
+            document.getElementById("projects-title").innerHTML = translations[currentLang]["projects-title"];
+            document.getElementById("contact-title").innerHTML = translations[currentLang]["contact-title"];
+            document.getElementById("contact-text").innerHTML = translations[currentLang]["contact-text"];
+            languageToggle.textContent = translations[currentLang]["button-text"];
+        });
+    </script>
+</body>
+
+</html>
