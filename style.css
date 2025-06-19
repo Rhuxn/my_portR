@@ -1,27 +1,45 @@
-/* Resetando margens e preenchimento */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Estilização geral */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f4f4;
     color: #333;
-    padding-top: 80px; /* Adicionando padding para compensar a altura do cabeçalho fixo */
+    padding-top: 80px;
     scroll-behavior: smooth;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Modo Escuro */
+/* E se quiser ser mais específico: */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode p,
+body.dark-mode a {
+  color: #f1f1f1;
+}
+
+/* Também pode melhorar contraste de botões e sidebar */
+body.dark-mode .sidebar {
+  background-color: #333;
+}
+
+body.dark-mode .menu-btn,
+body.dark-mode .close-btn {
+  color: #f1f1f1;
+}
+
+/* Modo escuro */
 body.dark-mode {
     background-color: #222;
     color: #ddd;
 }
 
-/* Cabeçalho */
+/* Cabeçalho fixo */
 header {
     background-color: #333;
     color: #fff;
@@ -31,141 +49,106 @@ header {
     left: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Remover a animação de digitação */
 header h1 {
     font-size: 2.5em;
     white-space: nowrap;
-    width: fit-content;
 }
 
-/* Títulos claros no modo escuro */
-body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 {
-    color: #fff;
+/* Sidebar menu */
+.sidebar {
+    position: fixed;
+    right: -260px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: #333;
+    color: white;
+    padding-top: 60px;
+    transition: right 0.3s ease;
+    z-index: 1500;
 }
 
-/* Navegação */
-nav ul {
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar ul {
     list-style: none;
+    padding: 0;
     display: flex;
+    flex-direction: column;
 }
 
-nav ul li {
-    margin: 0 15px;
+.sidebar ul li {
+    padding: 15px;
+    text-align: center;
 }
 
-nav ul li a {
-    color: #fff;
+.sidebar ul li a,
+.sidebar ul li button {
+    color: white;
     text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.5s ease, transform 0.3s ease;
-}
-
-nav ul li a:hover {
-    color: #ff8c00;
-    transform: scale(1.1);
-}
-
-nav ul li a:active {
-    transform: scale(0.9);
-}
-
-/*botão tradutor*/
-.translate-toggle {
-    background: none;
-    border: 2px hidden #fff;
-    color: #fff;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 15px;
-    font-size: 15px;
-    transition: background-color 0.5s ease, transform 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.527);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.translate-toggle:hover {
-    color: #ff8c00;
-    transform: scale(1.2);
-    box-shadow: 0 1px 10px rgba(255, 255, 255, 0.74);
-}
-
-body.dark-mode .translate-toggle:hover {
-    box-shadow: 0 1px 10px rgba(255, 255, 255, 0.74);
-}
-
-.translate-toggle:active {
-    transform: scale(0.9);
-}
-
-/* Botão Dark Mode */
-.dark-mode-toggle {
-    background: none;
-    border: 2px hidden #fff;
-    color: #fff;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 15px;
-    font-size: 15px;
-    transition: background-color 0.5s ease, transform 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.527);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.dark-mode-toggle:hover {
-    color: #ff8c00;
-    transform: scale(1.2);
-    box-shadow: 0 1px 10px rgba(255, 255, 255, 0.74);
-}
-
-body.dark-mode .dark-mode-toggle:hover {
-    box-shadow: 0 1px 10px rgba(255, 255, 255, 0.74);
-}
-
-.dark-mode-toggle:active {
-    transform: scale(0.9);
-}
-
-/* Menu Responsivo */
-.menu-toggle {
+    font-size: 1.1em;
     background: none;
     border: none;
-    color: #fff;
-    font-size: 30px;
     cursor: pointer;
-    display: none;
 }
 
-nav ul.show {
-    display: flex;
+.sidebar ul li a:hover,
+.sidebar ul li button:hover {
+    color: #ff8c00;
 }
 
-/* Estilos das seções */
-.section {
-    padding: 60px 20px;
+/* Botões menu */
+.menu-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 22px;
+    z-index: 1600;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    width: 33px;
+    height: 33px;
     text-align: center;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
-.section.visible {
-    opacity: 1;
-    transform: translateY(0);
+.close-btn:hover {
+    background-color: red;
+    border-radius: 15px;
+    transition: background-color 0.2s ease;
+}
+
+/* Conteúdo e seções*/ 
+.section {
+  padding: 60px 20px;
+  text-align: center; 
+  min-height: 70vh;
+  z-index: 1;
+  background-color: transparent;
+  color: inherit;
 }
 
 .container {
@@ -174,127 +157,199 @@ nav ul.show {
     padding: 0 15px;
 }
 
+#projetos {
+  margin-bottom: 80px;
+}
+
+#contato {
+  margin-top: 80px;
+}
+
 h2 {
     font-size: 2em;
     margin-bottom: 20px;
     color: #333;
-    text-align: center;
-    width: 100%;
 }
 
-/* Estilizando seção Sobre Mim */
+/* Sobre texto */
 .sobre-texto {
     text-align: justify;
-    padding: 0 35px; 
+    padding: 0 35px;
+    font-size: larger;
 }
 
 /* Projetos */
 .project-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin-top: 40px;
-    margin-bottom: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 40px;
+  gap: 20px;
+  isolation: isolate;
+}
+
+.project-wrapper {
+  flex: 0 1 calc(50% - 10px);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 0;
 }
 
 .project {
-    background-color: #fff;
-    border-radius: 25px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.527);
-    width: 45%;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 25px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  z-index: 1;
+  will-change: transform;
 }
 
-/* Estilo para modo escuro */
+.project:hover {
+  transform: scale(1.06);
+  box-shadow: 0 1px 75px rgba(0,0,0,0.7);
+  z-index: 9999;
+  position: relative;
+}
+
+.project:active {
+  transform: scale(0.9);
+}
+
+.project-img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin: 15px 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.project-img:hover {
+  transform: scale(1.05);
+}
+
+.project p{
+    text-align: justify;
+}
+
+/* Responsivo para telas pequenas */
+@media (max-width: 768px) {
+  .project-wrapper {
+    flex: 0 1 100%;
+    margin: 10px auto;
+  }
+  .project {
+    width: 90%;
+  }
+}
+
+/* Modo escuro projetos */
 body.dark-mode .project {
     background-color: #444;
     color: #fff;
 }
 
 body.dark-mode .project:hover {
-    box-shadow: 0 1px 75px rgba(255, 255, 255, 0.74);
-}
-
-.project:hover {
-    transform: scale(1.1);
-    box-shadow: 0 1px 75px rgb(0, 0, 0);
-}
-
-.project:active{
-    transform: scale(0.9);
+    box-shadow: 0 1px 75px rgba(255, 255, 255, 0.7);
 }
 
 /* Redes sociais */
 .social-links a {
     color: #333;
     text-decoration: none;
-    font-size: 1.0em;
+    font-size: 1.1em;
     margin: 0 10px;
     transition: transform 0.3s ease;
-}
-
-/* Links das redes sociais no modo escuro */
-body.dark-mode .social-links a {
-    color: #fff !important;
 }
 
 .social-links a:hover {
     color: #ff8c00;
 }
 
-/* Botão de Contato Animado */
-#contato ul li a {
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease, transform 0.2s ease;
+/* Links redes sociais modo escuro */
+body.dark-mode .social-links a {
+    color: #fff !important;
 }
 
-#contato ul li a:hover {
-    color: #ff8c00;
-    transform: scale(1.1);
-}
-
-/* Rodapé */
+/* Footer */
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    transition: background-color 0.3s ease;
+    margin-top: -40px;
 }
 
 footer:hover {
     background-color: #444;
-    
 }
 
-/* Responsividade */
+/* Botões tradução e modo escuro */
+.translate-toggle,
+.dark-mode-toggle {
+    background: #333;
+    border: none;
+    color: #fff;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 15px;
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
+    width: 90px;
+}
+
+.translate-toggle:hover,
+.dark-mode-toggle:hover {
+    color: #ff8c00;
+    transform: scale(1.1);
+    box-shadow: 0 1px 75px rgba(0,0,0,0.7);
+}
+
+/* Modo escuro para botões do menu */
+body.dark-mode .translate-toggle,
+body.dark-mode .dark-mode-toggle {
+    background-color: #555;
+    color: #ddd;
+}
+
+/* Responsivo */
 @media (max-width: 768px) {
-    nav ul {
-        display: none;
+    .project-list {
         flex-direction: column;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        background-color: #333;
-        width: 200px;
-        border-radius: 5px;
-        text-align: right;
-    }
-
-    nav ul.show {
-        display: flex;
-    }
-
-    .project {
         width: 100%;
     }
-
-    .menu-toggle {
-        display: block;
+    .project {
+        width: 90%;
+        margin: 10px auto;
     }
+}
+
+[data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1000; /* fica atrás de tudo */
+  pointer-events: none; /* deixa clicar em tudo que estiver por cima */
 }
