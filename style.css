@@ -169,6 +169,7 @@ h2 {
     font-size: 2em;
     margin-bottom: 20px;
     color: #333;
+    margin-top: 80px;
 }
 
 /* Sobre texto */
@@ -184,7 +185,7 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-top: 40px;
+  margin-top: 50px;
   gap: 20px;
   isolation: isolate;
 }
